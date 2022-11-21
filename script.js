@@ -29,27 +29,28 @@ function init(){
   canvas.style.backgroundColor = "gray";
 }
 
-function vide(x,y) { 
+function vide(y,x) { 
   ctx.strokeStyle = "black"; //pour les lignes
   ctx.fillStyle = "#00FF00"; // pour les remplissages
   ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
   ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length)
 }
 
-function serpan(x,y) { 
+function serpan(y,x) { 
   ctx.strokeStyle = "black"; //pour les lignes
   ctx.fillStyle = "blue"; // pour les remplissages
   ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
   ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length)
 }
 
-function apple(x,y) { 
+function apple(y,x) { 
   ctx.strokeStyle = "black"; //pour les lignes
   ctx.fillStyle = "red"; // pour les remplissages
   ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
   ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length)
 }
 
+randomspawn(world.length);
 function randomspawn(max){
   var i = Math.floor(Math.random() * max);
   var j = Math.floor(Math.random() * max);
@@ -69,21 +70,21 @@ function drawTab(){
   //randomspawn(world.length);
   
   console.log(world.length);
-  for (var j = 0; j<world.length; j++){
-    for (var i = 0; i<world.length; i++){
+  for (var i = 0; i<world.length; i++){
+    for (var j = 0; j<world.length; j++){
       if (world[i][j] === 'empty'){
-        console.log("c'est vide ptn");
-        vide(j,i);
+        //console.log("c'est vide ptn");
+        vide(i,j);
       } else if (world[i][j] === 'snake'){
-        serpan(j,i);
-        console.log("c'est un ptn de serpan");        
+        serpan(i,j);
+        //console.log("c'est un ptn de serpan");        
       } else if (world[i][j] === 'apple'){
-        apple(j,i);
-        console.log("c'est une ptn de pomme");
+        apple(i,j);
+        //console.log("c'est une ptn de pomme");
       }
     }
   }
-console.log(world);
+//console.log(world);
 }
 
 console.log(getserpan());
@@ -114,7 +115,7 @@ function getTab(){
 
 }
 
-console.log(getapple());
+console.log("POMME:  " + getapple());
 function getapple(){
   let appleTab = [];
   for (var j = 0; j<world.length; j++){
@@ -138,4 +139,144 @@ function getapple(){
   let snake = [[3,5],[3,4],[3,3]];
   console.log(snake[2][2]);
   snake[][]
-  */
+*/
+
+
+let snake = [[5,3],[4,3],[3,3]];
+let snakehead = snake[snake.length-1];
+console.log(snakehead);
+isDead(snake[snake.length-1]);
+
+
+function isDead(coorTete){
+  var x = coorTete[1];
+  var y = coorTete[0];
+  console.log("co tete " + coorTete);
+  console.log(x);
+  console.log(y);
+  console.log(world[x][y]);
+
+  if (world[x][y] != 'empty' || world[x][y] != 'apple'){
+    console.log("dead");
+  }else{
+    console.log("alive");
+  }  
+}
+
+window.addEventListener("keydown",function(event){
+  var direction;
+  if (event.key === 'ArrowDown'){
+    if (direction != 'up'){
+    
+    direction = 'down';
+    console.log(direction);
+    if(getapple() == snake[snake.length-1]){
+      
+      console.log("pareil");
+
+      snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      randomspawn(world.length);
+      drawTab();
+      isDead(snake[snake.length-1]);
+
+    }else{
+      direction = 'down';
+      console.log("autre");
+      
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      drawTab();
+      isDead(snake[snake.length-1]);      
+    }
+  }
+
+  }else  if (event.key === 'ArrowLeft'){
+    if (direction != 'right'){
+    direction = 'left';
+
+    if(getapple() == snake[snake.length-1]){
+      
+      console.log("pareil");
+
+      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      randomspawn(world.length);
+      drawTab();
+      isDead(snake[snake.length-1]);
+
+    }else{
+      direction = 'left';
+      console.log("autre");
+      
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      drawTab();
+      isDead(snake[snake.length-1]);      
+    }
+  }
+
+  }else  if (event.key === 'ArrowRight'){
+    if(direction != 'left'){
+    direction = 'right';
+
+    if(getapple() == snake[snake.length-1]){
+      
+      console.log("pareil");
+      
+      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]+1]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      randomspawn(world.length);
+      drawTab();
+      isDead(snake[snake.length-1]);
+
+    }else{
+      direction = 'right';
+      console.log("autre");
+      
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]+1]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      drawTab();
+      isDead(snake[snake.length-1]);      
+    }
+  }
+
+  }else  if (event.key === 'ArrowUp'){
+    if (direction === 'down'){}else{
+    direction = 'up';
+   
+    if(getapple() == snake[snake.length-1]){
+      
+      console.log("pareil");
+      
+      snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      randomspawn(world.length);
+      drawTab();
+      isDead(snake[snake.length-1]);
+
+    }else{
+      direction = 'up';
+      console.log("autre");
+      
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      drawTab();
+      isDead(snake[snake.length-1]);      
+    }
+    }
+  
+  }
+});
