@@ -1,5 +1,6 @@
 const canvasWidth = 500;
 const canvasHeight = 500;
+var direction = 'up';
 //const maxValeur = world.length;
 
 let world = [
@@ -15,7 +16,7 @@ let world = [
 
 var canvas = document.getElementById("mycanvas1");
 var ctx = canvas.getContext('2d');
-//var intervarlID = setInterval(step,500);
+var intervarlID = setInterval(step,500);
   
 init ();
 
@@ -163,66 +164,149 @@ function isDead(coorTete){
   }  
 }
 
-window.addEventListener("keydown",function(event){
-  var direction;
-  if (event.key === 'ArrowDown'){
-    if (direction != 'up'){
+
+  function step(){
+    window.addEventListener("keydown",function(event){
+
+      if (event.key === 'ArrowDown'){
+       if(direction === 'up'){
+        direction = direction;
+       }else{
+        direction = 'down';
+       }
+       
+        }else  if (event.key === 'ArrowLeft'){
     
-    direction = 'down';
-    console.log(direction);
-    if(getapple() == snake[snake.length-1]){
-      
-      console.log("pareil");
+          if(direction === 'right'){
+            direction = direction;
+           }else{
+            direction = 'left';
+           }
+     
+        }else if (event.key === 'ArrowRight'){
+    
+          if(direction === 'left'){
+            direction = direction;
+           }else{
+            direction = 'right';
+           }
+          
+        }else if (event.key === 'ArrowUp'){
+    
+          if(direction === 'down'){
+            direction = direction;
+           }else{
+            direction = 'up';
+           }
+        }
+      });
 
-      snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
+    switch(direction){
+      case 'up':
+        if(world[snake[snake.length-1][0]][snake[snake.length-1][1] ] === 'apple'){
+          
+          snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+
+        }else{
+          var cut = snake.shift();
+          world[cut[0]][cut[1]] = 'empty';
+
+          snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        }
+        break;
+      case 'down':
+        if(world[snake[snake.length-1][0]][snake[snake.length-1][1] ] === 'apple'){
+
+
+          snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        }else{
+          var cut = snake.shift();
+          world[cut[0]][cut[1]] = 'empty';
+
+          snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        }
+        break;
+      case 'left':
+        if(world[snake[snake.length-1][0]][snake[snake.length-1][1] ] === 'apple'){
+  
+          snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        
+        }else{
+        var cut = snake.shift();
+        world[cut[0]][cut[1]] = 'empty';
+
+        snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
+        world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+        drawTab();
+        }
+        break;
+      case 'right':
+        if(world[snake[snake.length-1][0]][snake[snake.length-1][1] ] === 'apple'){
+
+          snake.push([snake[snake.length-1][0],snake[snake.length-1][1]+1]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        
+        }else{
+          var cut = snake.shift();
+          world[cut[0]][cut[1]] = 'empty';
+  
+          snake.push([snake[snake.length-1][0],snake[snake.length-1][1]+1]);
+          world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+          drawTab();
+        }
+        break;
+    }
+  }
+/*    if (direction === 'up'){
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
       world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
-      randomspawn(world.length);
       drawTab();
-      isDead(snake[snake.length-1]);
-
-    }else{
-      direction = 'down';
-      console.log("autre");
-      
+   
+    
+    }else if (direction === 'down'){
       var cut = snake.shift();
       world[cut[0]][cut[1]] = 'empty';
 
       snake.push([snake[snake.length-1][0]+1,snake[snake.length-1][1]]);
       world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
       drawTab();
-      isDead(snake[snake.length-1]);      
-    }
-  }
+    
 
-  }else  if (event.key === 'ArrowLeft'){
-    if (direction != 'right'){
-    direction = 'left';
-
-    if(getapple() == snake[snake.length-1]){
-      
-      console.log("pareil");
-
-      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
-      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
-      randomspawn(world.length);
-      drawTab();
-      isDead(snake[snake.length-1]);
-
-    }else{
-      direction = 'left';
-      console.log("autre");
-      
+    }else if (direction === 'left'){
       var cut = snake.shift();
       world[cut[0]][cut[1]] = 'empty';
 
       snake.push([snake[snake.length-1][0],snake[snake.length-1][1]-1]);
       world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
       drawTab();
-      isDead(snake[snake.length-1]);      
+
+
+    }else if (direction === 'right'){
+      var cut = snake.shift();
+      world[cut[0]][cut[1]] = 'empty';
+
+      snake.push([snake[snake.length-1][0],snake[snake.length-1][1]+1]);
+      world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
+      drawTab();
+    
     }
   }
-
-  }else  if (event.key === 'ArrowRight'){
+*/
+  /*}else  if (event.key === 'ArrowRight'){
     if(direction != 'left'){
     direction = 'right';
 
@@ -279,4 +363,4 @@ window.addEventListener("keydown",function(event){
     }
   
   }
-});
+});*/
