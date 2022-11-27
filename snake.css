@@ -1,0 +1,11 @@
+.btn{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-change{
+    right: -1rem;
+    visibility: hidden;
+}
