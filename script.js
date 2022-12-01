@@ -319,7 +319,7 @@ function vict(){
   document.body.insertBefore(btnrejouerdiv,canvas);
   btnrejouer.addEventListener("click", function(evt){
     window.location.reload();
-  })
+  });
 }
 
 // Fonction qui affiche un GameOver en cas de mort du serpent, un bouton rejouer va egalement apparaitre et va recharger la page s'il est cliqué.
@@ -346,7 +346,7 @@ function gameOver(){
   // On créer un listener sur le bouton rejouer
   btnrejouer.addEventListener("click", function(evt){
     window.location.reload();
-  }) 
+  }) ;
 }
 
 //Fonction qui permet la mise a jour graphique du score en changeant le titre de la page
@@ -368,7 +368,7 @@ function step(){
       if (world[k][l]==='snake'){
         case_Snake = case_Snake+1;
       } else if (world[k][l]==='walls'){
-        nbrMur = nbrMur + 1
+        nbrMur = nbrMur + 1;
       }
 
     }
