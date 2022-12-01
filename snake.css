@@ -135,7 +135,7 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .btn_niv-change{
@@ -153,9 +153,12 @@ p{
     text-shadow: 0.05em 0 0 rgba(245, 245, 245, .75);
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-p-change{
     margin: 0px;
+    margin-bottom: 10px;
+}
+.p-change{
+    margin: 0px;
+    height: 0px;
     visibility: hidden;
 }
 

@@ -22,6 +22,7 @@ const btn_normal = document.getElementById("normal");
 const btn_facile = document.getElementById("facile");
 const btn_niv = document.querySelector(".btn_niv");
 const texte = document.getElementById("texte");
+const texte2 = document.getElementById("texte2");
 
 
 // création du canva pour l'affichage du snake
@@ -83,7 +84,7 @@ window.onload = function () {
         btn_facile.classList.add("btn_facile-change");            //changement de couleur du bouton séléctionné (en rouge)
         btn_normal.classList.remove("btn_normal-change");         //changement de couleur du bouton non séléctionné (en bleu)
         btn_difficile.classList.remove("btn_difficile-change");   //changement de couleur du bouton non séléctionné (en bleu)
-        texte.classList.add("p-change");
+        
     }else if(evt.target.id === "normal"){
         world = normal;
         snake = [[5,3],[4,3],[3,3]];
@@ -91,7 +92,7 @@ window.onload = function () {
         btn_facile.classList.remove("btn_facile-change");
         btn_normal.classList.add("btn_normal-change");
         btn_difficile.classList.remove("btn_difficile-change");
-        texte.classList.add("p-change");
+        
     }else if(evt.target.id === "difficile"){
         world = difficile;
         snake = [[10,6],[9,6],[8,6]];
@@ -99,7 +100,7 @@ window.onload = function () {
         btn_facile.classList.remove("btn_facile-change");
         btn_normal.classList.remove("btn_normal-change");
         btn_difficile.classList.add("btn_difficile-change");
-        texte.classList.add("p-change");
+        
     }
   });
 
@@ -113,7 +114,8 @@ window.onload = function () {
     titre.classList.toggle("containerGlitch-change");
     btn_diff.classList.toggle("btn_diff-change");
     btn_niv.classList.toggle("btn_niv-change");    
-    texte.classList.add("p-change");
+    texte.classList.add("p-change");        //Supprime les textes
+    texte2.classList.add("p-change");
   });
 };
 
@@ -136,7 +138,9 @@ document.getElementsByClassName("btn_niv")[0].addEventListener("click", function
     btn.classList.toggle("btn-change");
     titre.classList.toggle("containerGlitch-change");
     btn_diff.classList.toggle("btn_diff-change");
-    btn_niv.classList.toggle("btn_niv-change");   
+    btn_niv.classList.toggle("btn_niv-change"); 
+    texte.classList.add("p-change");
+    texte2.classList.add("p-change");  
   
 });
 
@@ -210,7 +214,7 @@ function vide(y,x) {
 }
 
 // dessin d'une case serpent 
-function snake(y,x) { 
+function snakedessin(y,x) { 
   ctx.lineWidth=0;
   ctx.shadowBlur = 0;
   
@@ -270,7 +274,7 @@ function drawTab(score){
       if (world[i][j] === 'empty'){
         vide(i,j);
       } else if (world[i][j] === 'snake'){
-        snake(i,j);               
+        snakedessin(i,j);               
       } else if (world[i][j] === 'apple'){
         apple(i,j);
       }else if (world[i][j] === 'walls'){
