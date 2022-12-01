@@ -148,6 +148,16 @@ button:hover{
     margin-left: 20px;
     margin-right: 20px;
 }
+p{
+    color: whitesmoke;
+    text-shadow: 0.05em 0 0 rgba(245, 245, 245, .75);
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+p-change{
+    margin: 0px;
+    visibility: hidden;
+}
 
 /*
 pour faire l'effet glitch
