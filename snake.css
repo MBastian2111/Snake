@@ -44,6 +44,7 @@ body {
     box-shadow:inset 0px -3px 9px 0px #ff2929;
     text-shadow:inset 1px 1px 0px #662626;
     background:linear-gradient(#f92d2d, #fa0606);
+
 }
 .btn_facile{}
 
@@ -88,6 +89,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 20px;
 }
 
 button{
@@ -97,29 +99,55 @@ button{
     height:50px;
     border-width:1px;
     color:whitesmoke;
-    border-color:#0b0e07;
+    border-color:rgb(86, 23, 233);
     font-weight:bold;
     border-top-left-radius:3px;
     border-top-right-radius:3px;
     border-bottom-left-radius:3px;
     border-bottom-right-radius:3px;
-    box-shadow:inset 0px -3px 9px 0px #29bbff;
     text-shadow:inset 1px 1px 0px #263666;
     background:linear-gradient(#2dabf9, #057ce4);
+    box-shadow:
+    inset 0px -3px 9px 0px #29bbff;
 }
 
 button:hover{
-    background: linear-gradient(#057ce4, #2dabf9);
+    box-shadow:
+    0 0 8px rgb(86, 23, 233),
+    0 0 16px rgb(23, 69, 233),
+    0 0 32px rgb(23, 23, 233);
     
 }
 
 .btn-change{
     visibility: hidden;
     height: 0px;
+    margin: 0px;
 }
 
+.rejouer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.btn_niv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
 
+.btn_niv-change{
+    visibility: hidden;
+    height: 0px;
+    margin: 0px;
+}
+
+.btn_niv2{
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 /*
 pour faire l'effet glitch
@@ -189,14 +217,14 @@ pour faire l'effet glitch
     }
     }
     .containerGlitch{
-    margin-top: 40px;
+    margin-bottom: 50px;
     width: 100%;
     max-width: 1175px;
     height: auto;
     }
 
 .containerGlitch-change{
-    margin-top: 10px;
+   
     width: 100%;
     max-width: 1175px;
     height: 50px;
