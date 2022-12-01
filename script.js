@@ -2,6 +2,8 @@ const canvasWidth = 500;
 const canvasHeight = 500;
 const centreX = canvasWidth / 2;
 const centreY = canvasHeight / 2;
+var hauteur = hauteur;
+var largeur = largeur;
 var btnrejouer;
 var btnrejouerdiv;
 var direction = 'up';
@@ -113,7 +115,6 @@ window.onload = function () {
 // Création du listener pour le choix du niveau
 document.getElementsByClassName("btn_niv")[0].addEventListener("click", function(evt){
   if(evt.target.id == 1){
-    console.log(evt.target.id);
     remplissage_niveau(evt.target.id); 
     init();
     step();
@@ -126,8 +127,8 @@ document.getElementsByClassName("btn_niv")[0].addEventListener("click", function
     init();
     step();
   }
-
-  btn.classList.toggle("btn-change");
+    // on modifie les boutons pour qu'ils soit invisibles
+    btn.classList.toggle("btn-change");
     titre.classList.toggle("containerGlitch-change");
     btn_diff.classList.toggle("btn_diff-change");
     btn_niv.classList.toggle("btn_niv-change");   
@@ -152,10 +153,6 @@ function remplissage_niveau(niveau){
 
             for (var k = 0; k<data.dimensions; k++){
               for (var l = 0; l<data.dimensions; l++){
-                console.log("-");
-                console.log(data.snake[0]);
-                console.log([k,l]);
-                console.log(k===data.snake[0][0] && l===data.snake[0][1] );
                 if(k===data.snake[0][0] && l===data.snake[0][1] || k===data.snake[1][0] && l===data.snake[1][1] || k===data.snake[2][0] && l===data.snake[2][1] ){
                   tab_niv[k][l] = "snake";
                 } else if (k===data.walls[0][0] && l===data.walls[0][1]){
@@ -194,6 +191,7 @@ function init(){
   drawTab(score);
 }
 
+// dessin d'une case vide
 function vide(y,x) {
   ctx.lineWidth=3.5;
   ctx.shadowBlur = 10;
@@ -202,11 +200,12 @@ function vide(y,x) {
   ctx.strokeStyle= "rgba("+50+","+100+","+250+",1)"; //pour les lignes
   ctx.fillStyle = "black"; // pour les remplissages
   
-  ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
-  ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
+  ctx.fillRect(x*largeur , y*hauteur, largeur, hauteur);
+  ctx.strokeRect(x*largeur , y*hauteur, largeur, hauteur);
 }
 
-function serpan(y,x) { 
+// dessin d'une case serpent 
+function snake(y,x) { 
   ctx.lineWidth=0;
   ctx.shadowBlur = 0;
   
@@ -214,10 +213,11 @@ function serpan(y,x) {
   ctx.strokeStyle= "rgba("+50+","+100+","+250+",1)"; //pour les lignes
   ctx.fillStyle = "turquoise"; // pour les remplissages
   
-  ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
-  ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
+  ctx.fillRect(x*largeur , y*hauteur, largeur, hauteur);
+  ctx.strokeRect(x*largeur , y*hauteur, largeur, hauteur);
 }
 
+//dessin d'une case pomme
 function apple(y,x) { 
   ctx.lineWidth=0;
   ctx.shadowBlur = 0;
@@ -226,10 +226,11 @@ function apple(y,x) {
   ctx.strokeStyle= "rgba("+50+","+100+","+250+",1)"; //pour les lignes
   ctx.fillStyle = "red"; // pour les remplissages
   
-  ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
-  ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
+  ctx.fillRect(x*largeur , y*hauteur, largeur, hauteur);
+  ctx.strokeRect(x*largeur , y*hauteur, largeur, hauteur);
 }
 
+//dessin d'une case mur
 function walls(y,x){
   ctx.lineWidth=0;
   ctx.shadowBlur = 0;
@@ -238,11 +239,11 @@ function walls(y,x){
   ctx.strokeStyle= "rgba("+50+","+100+","+250+",1)"; //pour les lignes
   ctx.fillStyle = "white"; // pour les remplissages
   
-  ctx.fillRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
-  ctx.strokeRect(x*(canvasWidth/world.length) , y*(canvasHeight/world.length), canvasWidth/world.length, canvasHeight/world.length);
+  ctx.fillRect(x*largeur , y*hauteur, largeur, hauteur);
+  ctx.strokeRect(x*largeur , y*hauteur, largeur, hauteur);
 }
 
-
+// Fonction qui permet l'apparation a un emplacement aléatoire d'une pomme, si plus de pomme ne peuvent apparaitre, la victoire est déclarée 
 function randomspawn(max){
   var i = Math.floor(Math.random() * max);
   var j = Math.floor(Math.random() * max);
@@ -256,7 +257,7 @@ function randomspawn(max){
 
 
 
-
+//fonction qui va parcourir la map contenu dans world pour afficher les element selon leurs nature, elle permet aussi d'afficher le score
 function drawTab(score){
   
   for (var i = 0; i<world.length; i++){
@@ -264,7 +265,7 @@ function drawTab(score){
       if (world[i][j] === 'empty'){
         vide(i,j);
       } else if (world[i][j] === 'snake'){
-        serpan(i,j);               
+        snake(i,j);               
       } else if (world[i][j] === 'apple'){
         apple(i,j);
       }else if (world[i][j] === 'walls'){
@@ -277,6 +278,8 @@ function drawTab(score){
 
 }
  
+
+// Fonction qui affiche un GameOver en cas de mort du serpent, un bouton rejouer va egalement apparaitre et va recharger la page si il est cliqué.
 function gameOver(){
   ctx.save();
   ctx.shadowBlur = 10;
@@ -289,6 +292,7 @@ function gameOver(){
   ctx.fillText("Game Over", centreX, centreY - 180);
   ctx.restore();
 
+  // On créer une nouvelle div puis on y met le bouton "Rejouer"
   btnrejouerdiv = document.createElement("div");
   btnrejouerdiv.classList.add("rejouer");
   btnrejouer = document.createElement("button");
@@ -297,30 +301,36 @@ function gameOver(){
   btnrejouerdiv.appendChild(btnrejouer);
   document.body.insertBefore(btnrejouerdiv,canvas);  
 
+  // On créer un listener sur le bouton rejouer
   document.getElementById("btnrejouer").addEventListener('click', function(evt){
     window.location.reload();
   },true);
 }
 
+//Fonction qui permet la mise a jour graphique du score en changeant le titre de la page
 function affiche_score(score){
   document.getElementById("textGlitch").textContent = "Votre score: " + score;
 }
 
+
+// fonction qui permet le deplacement du snake ainsi que les vérifactions tel que savoir si une pomme est mangé,
+// si le serpent est mort ou la mise a jour du score.
 function step(){
 
+  //On lance l'interval une seule fois
   if(interval === 0){
-    console.log("dans ta mere");
     intervalID = setInterval(step,vitesse);
     interval = 1;
   }
-
+  //on verifie si le serpent est mort pour arreter l'interval et appeler la fonction pour faire apparaitre le texte gameover
   if(gameover === 1){
     clearInterval(intervalID);
     gameOver();
     
   }else{
+    //on regarde quel touche a été appuyée pour changer la valeur de la variable direction, on vérifie aussi si le mouvement est possible
+    //par exemple on ne peut pas aller en bas si la  direction est vers le haut. Dans se cas la, la direction de change pas.
       window.addEventListener("keydown",function(event){
-      console.log(world[snake[snake.length-1][0]][snake[snake.length-1][1]+1]);
       if (event.key === 'ArrowDown'){
        if(direction === 'up'){
         direction = direction;
@@ -354,12 +364,16 @@ function step(){
         }
       });
 
+    // On bouge le serpent selon la direction définit plus tôt
     switch(direction){
       case 'up':
+        // On vérifie si le serpent est hors de la map ou si la tête touche une case serpent ou si la tête touche un mur.
         if ( snake[snake.length-1][0]-1 < 0|| world[snake[snake.length-1][0]-1][snake[snake.length-1][1]] === 'snake' || world[snake[snake.length-1][0]-1][snake[snake.length-1][1]] === 'walls'){
           gameover = 1;
         }else {
-
+          
+          // On regarde si le serpent mange un pomme,dans ce cas on avance la tête d'une case et on ne lui coupe pas la queu,
+          // augmenter le score et regénérer une pomme.
           if(world[snake[snake.length-1][0]-1][snake[snake.length-1][1]] === 'apple'){
             snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
             world[snake[snake.length-1][0]][snake[snake.length-1][1]] = 'snake';
@@ -369,6 +383,7 @@ function step(){
 
           }else{
 
+            // Si le serpent n'est pas sur une pomme, on avance la tête d'une case et on coupe la queue.
             cut = snake.shift();
             world[cut[0]][cut[1]] = 'empty';
             snake.push([snake[snake.length-1][0]-1,snake[snake.length-1][1]]);
