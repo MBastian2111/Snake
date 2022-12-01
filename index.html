@@ -6,10 +6,26 @@
     <title>Snake Game</title>
 </head>
 <body>
-    <div class="btn">
-        <button id="jouer">JOUONS !</button>
-    </div>
-
+    <center>
+        <div class="containerGlitch">
+        <h1 class="glitch" id="textGlitch"> Snake Game </h1>
+        </div>
+    </center>
+        <p id="texte">Mode Campagne (se lance au choix du niveau !)</p>
+        <div class ="btn_niv">
+            <div class="btn_niv1"><button id="1">Niveau 1</button></div>
+            <div class="btn_niv2"><button id="2">Niveau 2</button></div>
+            <div class="btn_niv3"><button id="3">Niveau 3</button></div>
+        </div>
+        <p id="texte2">Mode Libre (Choisissez la difficulté puis cliquez sur "Jouons !")</p>
+        <div class ="btn_diff">
+            <div class="btn_facile"><button id="facile">Facile</button></div>
+            <div class="btn_normal"><button id="normal">Normal</button></div>
+            <div class="btn_difficile"><button id="difficile">Difficile</button></div>
+        </div>
+        <div class="btn">
+            <button id="jouer">JOUONS !</button>
+        </div>
     <canvas id ="mycanvas1" width="400" height="300"></canvas>
     <script src="script.js"></script>
 </body>
