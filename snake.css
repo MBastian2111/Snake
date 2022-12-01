@@ -1,0 +1,203 @@
+
+html{
+    height: 100%;
+}
+body {
+    background-image: linear-gradient(rgb(29, 27, 27),rgb(14, 9, 160));
+}
+
+.btn_difficile{}
+
+.btn_difficile-change{
+    font-size:23px;
+    font-family:Verdana;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:whitesmoke;
+    border-color:#0b0e07;
+    font-weight:bold;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    box-shadow:inset 0px -3px 9px 0px #ff2929;
+    text-shadow:inset 1px 1px 0px #662626;
+    background:linear-gradient(#f92d2d, #fa0606);
+}
+
+.btn_normal{}
+
+.btn_normal-change{
+    font-size:23px;
+    font-family:Verdana;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:whitesmoke;
+    border-color:#0b0e07;
+    font-weight:bold;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    box-shadow:inset 0px -3px 9px 0px #ff2929;
+    text-shadow:inset 1px 1px 0px #662626;
+    background:linear-gradient(#f92d2d, #fa0606);
+}
+.btn_facile{}
+
+.btn_facile-change{
+    font-size:23px;
+    font-family:Verdana;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:whitesmoke;
+    border-color:#0b0e07;
+    font-weight:bold;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    box-shadow:inset 0px -3px 9px 0px #ff2929;
+    text-shadow:inset 1px 1px 0px #662626;
+    background:linear-gradient(#f92d2d, #fa0606);
+}
+
+#normal{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.btn_diff{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_diff-change{
+    visibility: hidden;
+    margin-bottom: 0px;
+    height: 1px;
+}
+
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    font-size:23px;
+    font-family:Verdana;
+    width:140px;
+    height:50px;
+    border-width:1px;
+    color:whitesmoke;
+    border-color:#0b0e07;
+    font-weight:bold;
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    box-shadow:inset 0px -3px 9px 0px #29bbff;
+    text-shadow:inset 1px 1px 0px #263666;
+    background:linear-gradient(#2dabf9, #057ce4);
+}
+
+button:hover{
+    background: linear-gradient(#057ce4, #2dabf9);
+    
+}
+
+.btn-change{
+    visibility: hidden;
+    height: 0px;
+}
+
+
+
+
+/*
+pour faire l'effet glitch
+*/
+.glitch{
+    font-size: 75px;
+    color: whitesmoke;
+    animation: glitch 698ms infinite;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.5rem;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, .75), -0.025em -.05em 0 rgba(0, 255, 0, .75), 0.025em .05em 0 rgba(0, 0, 255, .75);
+    }
+    .glitch2Bedore{
+    font-size: 6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.5rem;
+    color: white;
+    } @keyframes glitch{
+    0%{
+    text-shadow:
+    0.05em 0 0 rgba(255, 0, 0, .75),
+    -0.025em -.05em 0 rgba(0, 255, 0, .75),
+    0.025em .05em 0 rgba(0, 0, 255, .75);
+    }
+    14%{
+    text-shadow:
+    0.05em 0 0 rgba(255, 0, 0, .75),
+    -0.025em -.05em 0 rgba(0, 255, 0, .75),
+    0.025em .05em 0 rgba(0, 0, 255, .75);
+    }
+    15%{
+    text-shadow:
+    -0.05em -.025em 0 rgba(255, 0, 0, .75),
+    0.025em 0.025em 0 rgba(0, 255, 0, .75),
+    -0.05em -.05em 0 rgba(0, 0, 255, .75);
+    }
+    49%{
+    text-shadow:
+    -0.05em -.025em 0 rgba(255, 0, 0, .75),
+    0.025em 0.025em 0 rgba(0, 255, 0, .75),
+    -0.05em -.05em 0 rgba(0, 0, 255, .75);
+    }
+    50%{
+    text-shadow:
+    0.025em 0.05em 0 rgba(255, 0, 0, .75),
+    0.05em 0 0 rgba(0, 255, 0, .75),
+    0 -0.05em 0 rgba(0, 0, 255, .75);
+    }
+    99%{
+    text-shadow:
+    0.025em 0.05em 0 rgba(255, 0, 0, .75),
+    0.05em 0 0 rgba(0, 255, 0, .75),
+    0 -0.05em 0 rgba(0, 0, 255, .75);
+    }
+    100%{
+    text-shadow:
+    -0.025em 0 0 rgba(255, 0, 0, .75),
+    -0.025em -0.025em 0 rgba(0, 255, 0, .75),
+    -0.025em -0.05em 0 rgba(0, 0, 255, .75);
+    }
+    }
+    .containerGlitch{
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1175px;
+    height: auto;
+    }
+
+.containerGlitch-change{
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1175px;
+    height: 50px;
+}
